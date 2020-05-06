@@ -1,0 +1,50 @@
+<div class="container">
+    <h1>Créer un Todo</h1>
+    <h4>{{ diagnostic }}</h4>
+    <div [hidden]="submitted">
+      <form (ngSubmit)="onSubmit()" #todoForm="ngForm">
+        <div class="form-group">
+          <label for="titre">Titre</label>
+          <input type="text" class="form-control" id="titre" name="titre" required 
+          [(ngModel)] = "todo.titre" #titre="ngModel">
+          <!--<div [hidden]="titre.valid || titre.pristine" class="alert alert-danger">-->
+            <div class="alert alert-danger">
+              Le titre du todo est obligatoire
+          </div>
+        </div>      
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" id="description" name="description" required 
+                  [(ngModel)] = "todo.description" #description="ngModel">
+          <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+              La description du todo est obligatoire
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dateExecution">Date d'exécution</label>
+          <input type="date" class="form-control" id="dateExecution" [(ngModel)] = "todo.dateExecution" name="dateExecution">        
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!todoForm.form.valid">Submit</button>
+        <button type="button" class="btn btn-default" (click)="newTodo(); todoForm.reset()">New Todo</button>
+
+      </form>
+    </div>
+    <div [hidden]="!submitted">
+        <h2>You submitted the following:</h2>
+        <div class="row">
+          <div class="col-xs-3">Titre</div>
+          <div class="col-xs-9">{{ todo.titre }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Description</div>
+            <div class="col-xs-9">{{ todo.description }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">dateExecution</div>
+          <div class="col-xs-9">{{ todo.dateExecution }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+     </div>
+</div>

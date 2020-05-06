@@ -1,0 +1,12 @@
+<div class="container" >
+<h1>Liste des todos</h1>
+    <div *ngIf="todos.length > 0">
+        <ul>
+            <li *ngFor="let todo of todos">{{ todo.id }} - {{ todo.titre }}</li>            
+        </ul>
+        <!--<button type="button" class="btn btn-primary" (click)="getContactByIdAndFirstname($event)">Get Contact with id and firstName.</button>-->
+    </div>
+    <div *ngIf="todos.length < 1">
+        <h4 class="noTodos">Aucun todo</h4>
+    </div>
+</div>
