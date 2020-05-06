@@ -10,35 +10,22 @@ import { catchError } from "rxjs/operators";
 })
 export class TodosService {
 
-  todoPath: string = 'todos';
-  headers: HttpHeaders;
-  //httpHeaders:HttpHeaders;
-  options: {
-    headers?: HttpHeaders, /*| {[header: string]: string | string[]},*/
-    observe?: 'body', // | 'events' | 'response',
-    // params?: HttpParams|{[param: string]: string | string[]},
-    // reportProgress?: boolean,
-    responseType?: /*'arraybuffer'|'blob'|*/'json', //|'text',
-    // withCredentials?: boolean,
-  }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'ionis-group': 'A'
+    })
+  };
 
+  todoPath: string = 'todos';
+  
   constructor(private http: HttpClient) {
     console.log("Construction");
-   // httpHeaders:HttpHeaders;
-    this.headers = new HttpHeaders();
-    this.headers.append('ionis-group','A');  
-    this.options = {"headers":this.headers}; // ,"observe":'body',responseType:'json'};
-    /*[
-      this.headers,
-      observe?: 'body',
-      responseType?: 'json',
-    ];*/
    }
 
   getTodos() {        
     return this.http
                 .get<Array<Todo>>(environment.apiUrl + this.todoPath,
-                  this.options)
+                  this.httpOptions)
                 .pipe(
                   catchError(this.handleError)
                 );
@@ -47,7 +34,7 @@ export class TodosService {
   getTodoById(id: number) {        
     return this.http
                 .get<Todo>(environment.apiUrl + this.todoPath + '/' + id,
-                  this.options)
+                  this.httpOptions)
                 .pipe(
                   catchError(this.handleError)
                 )
@@ -56,7 +43,7 @@ export class TodosService {
   creerTodo(newTodo: Todo) {        
     return this.http
                 .post(environment.apiUrl + this.todoPath,newTodo,
-                  this.options)
+                  this.httpOptions)
                 .pipe(
                   catchError(this.handleError)
                 );
@@ -65,7 +52,7 @@ export class TodosService {
   modifierTodo(todoModifie: Todo) {        
     return this.http
                 .put(environment.apiUrl + this.todoPath, todoModifie,
-                  this.options)
+                  this.httpOptions)
                 .pipe(
                   catchError(this.handleError)
                 );
@@ -74,7 +61,7 @@ export class TodosService {
   supprimerTodo(id: number) {
     return this.http
                 .delete(environment.apiUrl + this.todoPath + '/' + id,
-                  this.options)
+                  this.httpOptions)
                 .pipe(
                   catchError(this.handleError)
                 );
