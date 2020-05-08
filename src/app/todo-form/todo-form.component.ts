@@ -9,7 +9,7 @@ import { TodosService } from '../services/todos.service';
 })
 export class TodoFormComponent implements OnInit {
 
-  todo: Todo;// = new Todo(/*21, 'John', 'Dooh', 'Super Flexible',41*/);
+  todo: Todo = new Todo(100, null,null,null);
 
   submitted = false;
 
@@ -20,17 +20,12 @@ export class TodoFormComponent implements OnInit {
 
   onSubmit() { 
     this.submitted = true; 
-    alert("Création du Todo");
-    /*this.http.get(environment.apiUrl + 'todos/' + this.todo.age).subscribe(
-      (data: Todo) => {
-        this.todo = data;
-        console.log(JSON.stringify(this.todo));
-      }
-      )*/
+    this.todosService.creerTodo(this.todo);
+    alert("Appel de création du Todo effectué");
   }
 
   newTodo() {
-    this.todo = new Todo(null,null,null);
+    this.todo = new Todo(100,null,null,null);
   }
 
   // TODO: Remove this when we're done

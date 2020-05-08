@@ -42,7 +42,8 @@ export class TodosService {
 
   creerTodo(newTodo: Todo) {        
     return this.http
-                .post(environment.apiUrl + this.todoPath,newTodo,
+                .post<Todo>(environment.apiUrl + this.todoPath+ '/' + newTodo.id,
+                newTodo,
                   this.httpOptions)
                 .pipe(
                   catchError(this.handleError)
@@ -51,7 +52,7 @@ export class TodosService {
 
   modifierTodo(todoModifie: Todo) {        
     return this.http
-                .put(environment.apiUrl + this.todoPath, todoModifie,
+                .put<Todo>(environment.apiUrl + this.todoPath, todoModifie,
                   this.httpOptions)
                 .pipe(
                   catchError(this.handleError)
