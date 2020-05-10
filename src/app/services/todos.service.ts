@@ -10,13 +10,9 @@ import { catchError } from "rxjs/operators";
 })
 export class TodosService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'ionis-group': 'A'
-    })
-  };
+  contextPath = 'rest/todos';
 
-  todoPath: string = 'todos';
+  //todoPath: string = 'todos';
   
   constructor(private http: HttpClient) {
     console.log("Construction");
@@ -24,8 +20,10 @@ export class TodosService {
 
   getTodos() {        
     return this.http
-                .get<Array<Todo>>(environment.apiUrl + this.todoPath,
-                  this.httpOptions)
+                .get<Array<Todo>>(environment.apiUrl + '/' + this.contextPath,
+                  { headers: {'Content-Type': 'application/json',
+                              'ionis-group': environment.groupeName}
+                })
                 .pipe(
                   catchError(this.handleError)
                 );
@@ -33,27 +31,35 @@ export class TodosService {
 
   getTodoById(id: number) {        
     return this.http
-                .get<Todo>(environment.apiUrl + this.todoPath + '/' + id,
-                  this.httpOptions)
+                .get<Todo>(environment.apiUrl + '/' + this.contextPath + '/' + id,
+                  { headers: {'Content-Type': 'application/json',
+                              'ionis-group': environment.groupeName}  
+                })
                 .pipe(
                   catchError(this.handleError)
                 )
   }
 
-  creerTodo(newTodo: Todo) {        
+  creerTodo(todo: Todo){
+    console.log(JSON.stringify(todo));
     return this.http
-                .post<Todo>(environment.apiUrl + this.todoPath+ '/' + newTodo.id,
-                newTodo,
-                  this.httpOptions)
+                .post<Todo>(environment.apiUrl + '/' + this.contextPath,
+                JSON.stringify(todo),
+                  { headers: {'Content-Type': 'application/json',
+                              'ionis-group': environment.groupeName}
+                })
                 .pipe(
                   catchError(this.handleError)
                 );
   }
 
-  modifierTodo(todoModifie: Todo) {        
+  modifierTodo(todo: Todo) {        
     return this.http
-                .put<Todo>(environment.apiUrl + this.todoPath, todoModifie,
-                  this.httpOptions)
+                .put<Todo>(environment.apiUrl + '/' + this.contextPath,
+                JSON.stringify(todo),
+                  { headers: {'Content-Type': 'application/json',
+                              'ionis-group': environment.groupeName}
+                })
                 .pipe(
                   catchError(this.handleError)
                 );
@@ -61,8 +67,10 @@ export class TodosService {
 
   supprimerTodo(id: number) {
     return this.http
-                .delete(environment.apiUrl + this.todoPath + '/' + id,
-                  this.httpOptions)
+                .delete(environment.apiUrl + '/' + this.contextPath + '/' + id,
+                  { headers: {'Content-Type': 'application/json',
+                              'ionis-group': environment.groupeName}
+                })
                 .pipe(
                   catchError(this.handleError)
                 );

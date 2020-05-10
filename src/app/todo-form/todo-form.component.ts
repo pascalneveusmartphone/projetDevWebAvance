@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../model/todo';
 import { TodosService } from '../services/todos.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'ns-todo-form',
@@ -9,7 +10,7 @@ import { TodosService } from '../services/todos.service';
 })
 export class TodoFormComponent implements OnInit {
 
-  todo: Todo = new Todo(100, null,null,null);
+  todo: Todo = new Todo();
 
   submitted = false;
 
@@ -20,12 +21,14 @@ export class TodoFormComponent implements OnInit {
 
   onSubmit() { 
     this.submitted = true; 
+    this.todo.dateExecution = new Date();
+    this.todo.groupeName = environment.groupeName;
     this.todosService.creerTodo(this.todo);
     alert("Appel de création du Todo effectué");
   }
 
   newTodo() {
-    this.todo = new Todo(100,null,null,null);
+    this.todo = new Todo();
   }
 
   // TODO: Remove this when we're done

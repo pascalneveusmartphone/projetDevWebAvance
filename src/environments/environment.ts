@@ -3,9 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: 'http://9044af4c-8a85-430f-9436-f2908a508b0b.pub.cloud.scaleway.com/todos-management/rest/'
+  production: true,
+  apiUrl: 'http://9044af4c-8a85-430f-9436-f2908a508b0b.pub.cloud.scaleway.com/todos-management',
+  groupeName: 'A'
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
