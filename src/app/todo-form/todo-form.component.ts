@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Todo } from '../model/todo';
 import { TodosService } from '../services/todos.service';
 import { environment } from 'src/environments/environment';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'ns-todo-form',
@@ -14,17 +15,28 @@ export class TodoFormComponent implements OnInit {
 
   submitted = false;
 
-  constructor(private todosService:TodosService) { }
+  constructor(private todosService:TodosService) {
+  }
 
   ngOnInit(): void {
   }
 
   onSubmit() { 
     this.submitted = true; 
-    this.todo.dateExecution = new Date();
+    // this.todo.dateExecution = new Date();
     this.todo.groupeName = environment.groupeName;
-    this.todosService.creerTodo(this.todo);
-    alert("Appel de création du Todo effectué");
+    this.todosService.creerTodo(this.todo).subscribe(
+      (data: Todo) => {
+        this.todo = data;
+        console.log(JSON.stringify(this.todo));
+      },
+      (error: HttpErrorResponse) => {
+        console.error(error.statusText + ' - ' + error.message);
+      },
+      () => {
+        console.log('Done: Create Todo.');
+      });
+    // alert("Appel de création du Todo effectué");
   }
 
   newTodo() {

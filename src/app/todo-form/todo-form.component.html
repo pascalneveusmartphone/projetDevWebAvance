@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
           <label for="dateExecution">Date d'exécution</label>
-          <input type="date" class="form-control" id="dateExecution" [(ngModel)] = "todo.dateExecution" name="dateExecution">        
+          <input type="date" class="form-control" id="dateExecution" [(ngModel)] = "todo.dateExecution" name="dateExecution"> 
         </div>
 
         <button type="submit" class="btn btn-success" [disabled]="!todoForm.form.valid">Submit</button>
@@ -31,7 +31,7 @@
       </form>
     </div>
     <div [hidden]="!submitted">
-        <h2>You submitted the following:</h2>
+        <h2>Voici votre todo  :</h2>
         <div class="row">
           <div class="col-xs-3">Titre</div>
           <div class="col-xs-9">{{ todo.titre }}</div>
@@ -45,6 +45,6 @@
           <div class="col-xs-9">{{ todo.dateExecution }}</div>
         </div>
         <br>
-        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+        <button class="btn btn-primary" (click)="submitted=false">Modifier</button>
      </div>
 </div>
