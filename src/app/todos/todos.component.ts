@@ -12,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class TodosComponent implements OnInit {
 
   todos: Array<Todo> = [];
-  currentTodo: Todo;
+  currentTodo: Todo = new Todo();
 
   constructor(private todosService:TodosService) { }
 
@@ -31,17 +31,5 @@ export class TodosComponent implements OnInit {
       }
     );
   }
-/*
-  getTodos(event: any) {
-    this.todosService.getTodos()
-        .subscribe(
-          (data: Array<Todo>) => {
-            this.todos = data;
-            // console.log(this.contacts);
-          },
-          (error: Error) => {
-            console.error(error.message);
-          }
-        )
-  }*/
+
 }
