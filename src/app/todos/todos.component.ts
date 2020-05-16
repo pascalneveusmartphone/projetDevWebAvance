@@ -3,6 +3,7 @@ import { Todo } from '../model/todo';
 import { TodosService } from '../services/todos.service';
 import { error } from 'protractor';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ns-todos',
@@ -14,7 +15,9 @@ export class TodosComponent implements OnInit {
   todos: Array<Todo> = [];
   currentTodo: Todo = new Todo();
 
-  constructor(private todosService:TodosService) { }
+  constructor(
+    private router: Router,
+    private todosService:TodosService) { }
 
   ngOnInit(): void {
     console.log('In ngOnInit');
@@ -30,6 +33,11 @@ export class TodosComponent implements OnInit {
         console.log('Done.');
       }
     );
+  }
+
+  selectTodo(todo: Todo){
+    let link = ['/todo', todo.id];
+        this.router.navigate(link);
   }
 
 }

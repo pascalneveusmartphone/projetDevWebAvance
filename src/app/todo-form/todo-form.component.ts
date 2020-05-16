@@ -3,6 +3,7 @@ import { Todo } from '../model/todo';
 import { TodosService } from '../services/todos.service';
 import { environment } from 'src/environments/environment';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
   selector: 'ns-todo-form',
@@ -15,7 +16,10 @@ export class TodoFormComponent implements OnInit {
 
   submitted = false;
 
-  constructor(private todosService:TodosService) {
+  constructor(
+    private todosService:TodosService,
+    private route: ActivatedRoute,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -58,13 +62,18 @@ export class TodoFormComponent implements OnInit {
     return this.isValid(this.todo.dateExecution);
   }
 
-  isCreationPossible() {
-    this.isTitreValide() &&
+  isSaisieOK() {
+    return this.isTitreValide() &&
     this.isDescriptionValide() &&
     this.isDateValide();
   }
 
   isValid(valeur:any){
     return valeur;
+  }
+
+  retour(): void {
+    this.router.navigate(['/todos']);
+    //window.history.back();
   }
 }

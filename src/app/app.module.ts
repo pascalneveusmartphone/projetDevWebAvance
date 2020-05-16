@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { RouterFormComponent } from './router-form/router-form.component';
 import { ROUTES } from './app.routes';
+import { DetailTodoComponent } from './detail-todo/detail-todo.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ROUTES } from './app.routes';
     TodosComponent,
     TodoFormComponent,
     RouterFormComponent,
+    DetailTodoComponent
   ],
   imports: [
     BrowserModule,

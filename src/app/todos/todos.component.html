@@ -2,7 +2,7 @@
 <h1>Liste des todos</h1>
     <div *ngIf="todos.length > 0">
         <ul>
-            <li *ngFor="let todo of todos">Titre : {{ todo.titre }} - Echéance : {{ todo.dateExecution }}</li>            
+            <li *ngFor="let todo of todos" (dblclick)="selectTodo(todo)">Titre : {{ todo.titre }} - Echéance : {{ todo.dateExecution }}</li>            
         </ul>
         <!--<button type="button" class="btn btn-primary" (click)="getContactByIdAndFirstname($event)">Get Contact with id and firstName.</button>-->
     </div>
