@@ -3,7 +3,7 @@ export class Todo {
   id: number;
   titre: string;
   description: string;
-  dateExecution: string;
+  dateExecution: Date;
   groupeName: string;
 
 }
