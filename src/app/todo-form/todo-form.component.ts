@@ -44,5 +44,27 @@ export class TodoFormComponent implements OnInit {
   }
 
   // TODO: Remove this when we're done
-   get diagnostic() { return JSON.stringify(this.todo); }
+  get diagnostic() { return JSON.stringify(this.todo); }
+
+  isTitreValide() {
+    return this.isValid(this.todo.titre);
+  }
+
+  isDescriptionValide() {
+    return this.isValid(this.todo.description);
+  }
+
+  isDateValide() {
+    return this.isValid(this.todo.dateExecution);
+  }
+
+  isCreationPossible() {
+    this.isTitreValide() &&
+    this.isDescriptionValide() &&
+    this.isDateValide();
+  }
+
+  isValid(valeur:any){
+    return valeur;
+  }
 }
