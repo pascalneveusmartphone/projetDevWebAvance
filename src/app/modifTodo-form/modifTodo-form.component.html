@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Créer un Todo</h1>
+    <h1>Modifier un Todo</h1>
     <!--<h4>{{ diagnostic }}</h4>-->
     <div [hidden]="submitted">
       <form (ngSubmit)="onSubmit()" #todoForm="ngForm">
@@ -36,32 +36,11 @@
         <br>
         <button type="submit" class="btn btn-success" [disabled]="!isSaisieOK()">Enregistrer le todo</button>
         <br><br>
-        <button type="button" class="btn btn-default" (click)="newTodo(); todoForm.reset()">Avoir un todo vierge</button>
+        <button class="btn btn-light" (click)="ecranPrecedent()">Ecran précédent</button>
         <br><br>
         <button class="btn btn-light" (click)="retour()">Retour vers la liste des Todos</button>
         <br><br>
         <button class="btn btn-light" (click)="accueil()">Retour à l'accueil</button>
       </form>
     </div>
-    <div [hidden]="!submitted">
-        <h2>Voici votre todo  :</h2>
-        <div class="row">
-          <div class="col-xs-3">Titre</div>
-          <div class="col-xs-9">{{ todo.titre }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Description</div>
-            <div class="col-xs-9">{{ todo.description }}</div>
-        </div>
-        <div class="row">
-          <div class="col-xs-3">dateExecution</div>
-          <div class="col-xs-9">{{ todo.dateExecution }}</div>
-        </div>
-        <br>
-        <button class="btn btn-primary" (click)="submitted=false">Modifier</button>
-        <br><br>
-        <button class="btn btn-light" (click)="retour()">Retour vers la liste des Todos</button>
-        <br><br>
-        <button class="btn btn-light" (click)="accueil()">Retour à l'accueil</button>
-     </div>
 </div>

@@ -6,13 +6,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
-  selector: 'ns-todo-form',
-  templateUrl: './todo-form.component.html',
-  styleUrls: ['./todo-form.component.css']
+  selector: 'ns-modifTodo-form',
+  templateUrl: './modifTodo-form.component.html',
+  styleUrls: ['./modifTodo-form.component.css']
 })
-export class TodoFormComponent implements OnInit {
+export class ModifTodoFormComponent implements OnInit {
 
-  todo: Todo = new Todo();
+  todo: Todo;
 
   submitted = false;
 
@@ -23,13 +23,16 @@ export class TodoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let id = +this.route.snapshot.paramMap.get('id');
+        this.todosService.getTodoById(id)
+            .subscribe((todo: any) => this.todo = todo);
   }
 
   onSubmit() { 
     this.submitted = true; 
     // this.todo.dateExecution = new Date();
-    this.todo.groupeName = environment.groupeName;
-    this.todosService.creerTodo(this.todo).subscribe(
+    /*this.todo.groupeName = environment.groupeName;*/
+    this.todosService.modifierTodo(this.todo).subscribe(
       (data: Todo) => {
         this.todo = data;
         console.log(JSON.stringify(this.todo));
@@ -38,13 +41,9 @@ export class TodoFormComponent implements OnInit {
         console.error(error.statusText + ' - ' + error.message);
       },
       () => {
-        console.log('Done: Create Todo.');
+        console.log('Done: Update Todo.');
       });
     // alert("Appel de création du Todo effectué");
-  }
-
-  newTodo() {
-    this.todo = new Todo();
   }
 
   // TODO: Remove this when we're done
@@ -74,10 +73,15 @@ export class TodoFormComponent implements OnInit {
 
   retour(): void {
     this.router.navigate(['/todos']);
-    //window.history.back();
+    
   }
 
   accueil():void {
     this.router.navigate(['']);
   }
+
+  ecranPrecedent():void {
+    window.history.back();
+  }
+  
 }

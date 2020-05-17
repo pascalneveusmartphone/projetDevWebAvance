@@ -21,3 +21,7 @@ ul {
   li a:hover {
     background-color: #111111;
   }
+  
+.alert-danger {
+    font-weight: bold;
+}

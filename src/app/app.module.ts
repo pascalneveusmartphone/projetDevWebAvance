@@ -10,6 +10,8 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
 import { RouterFormComponent } from './router-form/router-form.component';
 import { ROUTES } from './app.routes';
 import { DetailTodoComponent } from './detail-todo/detail-todo.component';
+import { ModifTodoFormComponent } from './modifTodo-form/modifTodo-form.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { DetailTodoComponent } from './detail-todo/detail-todo.component';
     TodosComponent,
     TodoFormComponent,
     RouterFormComponent,
-    DetailTodoComponent
+    DetailTodoComponent,
+    ModifTodoFormComponent
   ],
   imports: [
     BrowserModule,

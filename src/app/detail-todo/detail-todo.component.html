@@ -21,11 +21,16 @@
             </tbody>
           </table>
         </div>
-        <br><br>
+        <br>
         <div class="card-action">
-          <button class="btn btn-light" (click)="retour()">Retour</button>
+          <button class="btn btn-light" (click)="retour()">Retour vers la liste des Todos</button>
+          <br><br>
+          <button class="btn btn-light" (click)="accueil()">Retour à l'accueil</button>
+          <br><br>
+          <button class="btn btn-light" (click)="modifierTodo(todo)">Modifier</button>
           <br><br>
           <button class="btn btn-light" (click)="deleteTodo(todo.id)">Supprimer</button>
+          
         </div>
       </div>
     </div>

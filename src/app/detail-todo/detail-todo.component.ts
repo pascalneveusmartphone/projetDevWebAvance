@@ -12,7 +12,6 @@ import { TodosService } from '../services/todos.service';
 })
 export class DetailTodoComponent implements OnInit {
   
-    //todos: Todo[] = null;
     todo: Todo = null;
   
     constructor(
@@ -29,7 +28,6 @@ export class DetailTodoComponent implements OnInit {
 
     retour(): void {
         this.router.navigate(['/todos']);
-        //window.history.back();
     }
     
     deleteTodo(id: number): void {
@@ -37,5 +35,13 @@ export class DetailTodoComponent implements OnInit {
             .subscribe(todo => this.todo/* = todo*/);
         this.router.navigate(['/todos']);
     }
+
+    accueil():void {
+        this.router.navigate(['']);
+    }
   
+    modifierTodo(todo: Todo){
+        let link = ['/modifTodo', todo.id];
+            this.router.navigate(link);
+    }
 }
