@@ -43,6 +43,7 @@ export class ModifTodoFormComponent implements OnInit {
       () => {
         console.log('Done: Update Todo.');
       });
+      this.retour();
     // alert("Appel de création du Todo effectué");
   }
 

@@ -55,7 +55,7 @@ export class TodosService {
 
   modifierTodo(todo: Todo) {        
     return this.http
-                .put<Todo>(environment.apiUrl + '/' + this.contextPath,
+                .put<Todo>(environment.apiUrl + '/' + this.contextPath + '/' + todo.id,
                 JSON.stringify(todo),
                   { headers: {'Content-Type': 'application/json',
                               'ionis-group': environment.groupeName}
